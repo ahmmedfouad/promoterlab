@@ -30,7 +30,7 @@ type Prediction = {
   created_at?: string;
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://backend-972d617d.fastapicloud.dev";
 
 const PRESET_SEQUENCES = [
   {
