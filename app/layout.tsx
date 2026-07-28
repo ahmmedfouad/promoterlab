@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: "PromoterLab AI", template: "%s | PromoterLab AI" },
+  title: { default: "PromoterLab", template: "%s | PromoterLab AI" },
   description: "Secure, high-precision E. coli DNA promoter sequence prediction.",
 };
 
