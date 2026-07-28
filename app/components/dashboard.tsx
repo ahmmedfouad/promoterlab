@@ -229,7 +229,7 @@ export function Dashboard() {
           <div className="flex items-center gap-4">
             <div className="hidden items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-3.5 py-1 text-xs font-semibold text-slate-300 sm:flex">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              Verified Research Engine
+              Research Engine
             </div>
             <span className="hidden text-xs font-medium text-slate-400 sm:block">
               {user?.firstName ? `Hi, ${user.firstName}` : user?.emailAddresses?.[0]?.emailAddress || "Research Workspace"}

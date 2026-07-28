@@ -241,7 +241,7 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
       {/* Dynamic Header Badge */}
       <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-bold text-indigo-300 backdrop-blur">
         <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse" />
-        3D Interactive DNA Canvas
+        DNA Canvas
       </div>
 
       {/* Hover Info Badge */}
