@@ -117,16 +117,28 @@ export function Dashboard() {
     return { total, promoters, promoterRatio, avgConfidence };
   }, [history]);
 
+  async function buildApiHeaders(isJson = false): Promise<Record<string, string>> {
+    const token = await getToken();
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const headers: Record<string, string> = {
+      "x-user-id": user?.id || "demo-user",
+    };
+    if (isJson) {
+      headers["Content-Type"] = "application/json";
+    }
+    if (token) {
+      headers["authorization"] = `Bearer ${token}`;
+    }
+    if (apiKey) {
+      headers["x-api-key"] = apiKey;
+    }
+    return headers;
+  }
+
   async function fetchHistory() {
     setIsHistoryLoading(true);
     try {
-      const token = await getToken();
-      const headers: Record<string, string> = {
-        "X-User-Id": user?.id || "demo-user",
-      };
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-      }
+      const headers = await buildApiHeaders();
       const response = await fetch(`${API_BASE_URL.replace(/\/$/, "")}/v1/predictions?limit=50`, {
         headers,
       });
@@ -157,15 +169,7 @@ export function Dashboard() {
     setIsLoading(true);
 
     try {
-      const token = await getToken();
-      const headers: Record<string, string> = {
-        "Content-Type": "application/json",
-        "X-User-Id": user?.id || "demo-user",
-      };
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-      }
-
+      const headers = await buildApiHeaders(true);
       const response = await fetch(`${API_BASE_URL.replace(/\/$/, "")}/v1/predictions`, {
         method: "POST",
         headers,
