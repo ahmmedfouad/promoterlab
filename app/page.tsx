@@ -75,7 +75,7 @@ export default function Home() {
               </div>
             </div>
             <Link href="/" className="text-xl font-extrabold tracking-tight text-white hover:opacity-90">
-              Vinca <span className="text-indigo-400">Genomics</span>
+              Promoter <span className="text-indigo-400">Lab</span>
             </Link>
           </div>
 
@@ -120,11 +120,11 @@ export default function Home() {
           <div className="lg:col-span-6 text-left">
             <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold text-indigo-300 shadow-inner">
               <FlaskConical className="h-4 w-4 text-indigo-400 animate-pulse" />
-              <span>VINCA ROSEAL ALKALOID RESEARCH ENGINE</span>
+              <span>PROMOTERLAB RESEARCH ENGINE</span>
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-              Decode <span className="bg-gradient-to-r from-indigo-400 via-violet-300 to-cyan-400 bg-clip-text text-transparent">3D DNA Promoters</span> of Life-Saving Biomolecules.
+              Decode <span className="bg-gradient-to-r from-indigo-400 via-violet-300 to-cyan-400 bg-clip-text text-transparent">DNA Promoters</span> of Life-Saving Biomolecules.
             </h1>
 
             <p className="mt-6 text-base leading-relaxed text-slate-300 sm:text-lg">
@@ -628,12 +628,12 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-6 px-6 sm:flex-row lg:px-8">
           <div className="flex items-center gap-3">
             <Dna className="h-5 w-5 text-indigo-400" />
-            <span className="font-extrabold text-white">Vinca Bio-Genomics Institute</span>
+            <span className="font-extrabold text-white">PromoterLab</span>
             <span className="text-xs text-slate-500">© 2026</span>
           </div>
 
           <div className="flex items-center gap-6 text-xs text-slate-400">
-            <a href="#visualizer" className="hover:text-white">3D DNA Visualizer</a>
+          
             <a href="#workbench" className="hover:text-white">Workbench</a>
             <a href="#explainer" className="hover:text-white">Genomics 101</a>
             <a href="#plans" className="hover:text-white">Access Tiers</a>
