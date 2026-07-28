@@ -1,0 +1,11 @@
+*** Begin Patch
+*** Update File: proxy.ts
+@@
+-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
++const isPublicRoute = createRouteMatcher(["/", "/sign-in(.*)", "/sign-up(.*)"]);
+@@
+     "/(api|trpc)(.*)",
++    "/__clerk/:path*",
+   ],
+ };
+*** End Patch

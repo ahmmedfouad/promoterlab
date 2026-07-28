@@ -1,3 +1,20 @@
+# PromoterLab web app
+
+Clerk-protected Next.js dashboard for the Promoter Prediction API.
+
+## Setup
+
+Copy `.env.example` to `.env.local`, set the Clerk keys and API URL, then run:
+
+```bash
+npm install
+npm run dev
+```
+
+The dashboard sends the active Clerk session token directly to `NEXT_PUBLIC_API_BASE_URL` when a prediction is requested.
+
+## Next.js reference
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
