@@ -80,7 +80,6 @@ export default function Home() {
           </div>
 
           <nav className="hidden items-center gap-8 text-sm font-semibold text-slate-300 md:flex">
-            <a href="#visualizer" className="transition hover:text-indigo-400">3D DNA Visualizer</a>
             <a href="#workbench" className="transition hover:text-indigo-400">Genomic Workbench</a>
             <a href="#explainer" className="transition hover:text-indigo-400">Genomics 101</a>
             <a href="#plans" className="transition hover:text-indigo-400">Access Tiers</a>
