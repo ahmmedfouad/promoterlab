@@ -613,7 +613,7 @@ export default function Home() {
                 </ul>
               </div>
               <button
-                onClick={() => alert("Contact our research team at research@vincagenomics.org")}
+                onClick={() => alert("Contact our research team at ahmmedfouad@aol.com")}
                 className="mt-8 w-full rounded-2xl border border-slate-700 bg-slate-800 px-5 py-3 text-xs font-bold text-white transition hover:bg-slate-700"
               >
                 Contact Research Team
