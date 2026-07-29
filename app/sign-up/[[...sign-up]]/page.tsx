@@ -16,7 +16,7 @@ export default function SignUpPage() {
           </div>
         </div>
         <Link href="/" className="text-2xl font-black tracking-tight text-white hover:opacity-90">
-          Vinca <span className="text-indigo-400">Genomics</span>
+          Promoter <span className="text-indigo-400">Lab</span>
         </Link>
       </div>
 

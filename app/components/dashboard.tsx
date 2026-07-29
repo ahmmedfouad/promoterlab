@@ -154,7 +154,12 @@ export function Dashboard() {
   }
 
   useEffect(() => {
-    fetchHistory();
+    const loadHistory = window.setTimeout(() => {
+      void fetchHistory();
+    }, 0);
+    return () => window.clearTimeout(loadHistory);
+    // History is refreshed explicitly after a prediction; this only primes a session on load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -207,7 +212,7 @@ export function Dashboard() {
   }
 
   return (
-    <main className="min-h-screen bg-[#090d16] text-slate-100 selection:bg-violet-500/30 selection:text-violet-200">
+    <main className="riso-app min-h-screen bg-[#090d16] text-[#18202b] selection:bg-[#f7c548] selection:text-[#18202b]">
       {/* Background ambient lighting & grid */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-grid-pattern opacity-30" />
       <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
@@ -216,13 +221,13 @@ export function Dashboard() {
       <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090d16]/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-indigo-500 via-violet-500 to-cyan-400 p-0.5 shadow-lg shadow-indigo-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#164a9f] p-0.5 shadow-lg shadow-indigo-500/20">
               <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-[#090d16]">
                 <Dna className="h-5 w-5 text-indigo-400" />
               </div>
             </div>
             <Link href="/" className="text-xl font-extrabold tracking-tight text-white hover:opacity-90">
-              Vinca <span className="text-indigo-400">Genomics</span>
+              Promoter<span className="text-indigo-400">Lab</span>
             </Link>
           </div>
 
@@ -232,9 +237,9 @@ export function Dashboard() {
               Research Engine
             </div>
             <span className="hidden text-xs font-medium text-slate-400 sm:block">
-              {user?.firstName ? `Hi, ${user.firstName}` : user?.emailAddresses?.[0]?.emailAddress || "Research Workspace"}
+              {user?.firstName ? `Hi, ${user.firstName}` : user?.emailAddresses?.[0]?.emailAddress || "Open research workspace"}
             </span>
-            <UserButton />
+            {user ? <UserButton /> : <Link href="/sign-in" className="rounded-md border border-slate-800 px-3 py-1.5 text-xs font-bold text-indigo-300">Sign in to sync</Link>}
           </div>
         </div>
       </header>
@@ -255,7 +260,7 @@ export function Dashboard() {
               onClick={() => setActiveTab("analyze")}
               className={`flex items-center gap-2 rounded-xl px-5 py-2 text-xs font-bold transition whitespace-nowrap ${
                 activeTab === "analyze"
-                  ? "bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                  ? "bg-[#ff5e7d] text-[#18202b] shadow-md shadow-indigo-500/20"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -265,7 +270,7 @@ export function Dashboard() {
               onClick={() => setActiveTab("explainer")}
               className={`flex items-center gap-2 rounded-xl px-5 py-2 text-xs font-bold transition whitespace-nowrap ${
                 activeTab === "explainer"
-                  ? "bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                  ? "bg-[#ff5e7d] text-[#18202b] shadow-md shadow-indigo-500/20"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -278,7 +283,7 @@ export function Dashboard() {
               }}
               className={`flex items-center gap-2 rounded-xl px-5 py-2 text-xs font-bold transition whitespace-nowrap ${
                 activeTab === "history"
-                  ? "bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                  ? "bg-[#ff5e7d] text-[#18202b] shadow-md shadow-indigo-500/20"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -309,7 +314,7 @@ export function Dashboard() {
                           setSequence(preset.sequence);
                           setError(null);
                         }}
-                        className="flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-800/40 px-3.5 py-2 text-xs font-medium text-slate-300 transition hover:border-indigo-500/50 hover:bg-indigo-500/10 hover:text-indigo-200"
+                        className="flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-800/40 px-3.5 py-2 text-xs font-medium text-[#18202b] transition hover:border-indigo-500/50 hover:bg-[#f7c548] hover:text-[#18202b]"
                         title={preset.description}
                       >
                         <Zap className="h-3.5 w-3.5 text-indigo-400" /> {preset.name}
@@ -375,14 +380,14 @@ export function Dashboard() {
                     <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-slate-900">
                       <div style={{ width: `${(baseStats.counts.A / baseStats.total) * 100}%` }} className="bg-emerald-500" title={`Adenine: ${baseStats.counts.A}`} />
                       <div style={{ width: `${(baseStats.counts.C / baseStats.total) * 100}%` }} className="bg-indigo-500" title={`Cytosine: ${baseStats.counts.C}`} />
-                      <div style={{ width: `${(baseStats.counts.G / baseStats.total) * 100}%` }} className="bg-violet-500" title={`Guanine: ${baseStats.counts.G}`} />
+                      <div style={{ width: `${(baseStats.counts.G / baseStats.total) * 100}%` }} className="bg-[#ff5e7d]" title={`Guanine: ${baseStats.counts.G}`} />
                       <div style={{ width: `${(baseStats.counts.T / baseStats.total) * 100}%` }} className="bg-purple-500" title={`Thymine: ${baseStats.counts.T}`} />
                     </div>
 
                     <div className="flex justify-between font-mono text-[11px]">
                       <span className="text-emerald-400">A: {baseStats.counts.A}</span>
                       <span className="text-indigo-400">C: {baseStats.counts.C}</span>
-                      <span className="text-violet-400">G: {baseStats.counts.G}</span>
+                      <span className="text-[#ff5e7d]">G: {baseStats.counts.G}</span>
                       <span className="text-purple-400">T: {baseStats.counts.T}</span>
                     </div>
 
@@ -469,7 +474,7 @@ export function Dashboard() {
                 <button
                   disabled={isLoading}
                   type="submit"
-                  className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 px-6 py-4 font-bold text-white shadow-lg shadow-indigo-500/25 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#ff5e7d] px-6 py-4 font-bold text-[#18202b] shadow-lg shadow-indigo-500/25 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isLoading ? (
                     <>
@@ -526,8 +531,8 @@ export function Dashboard() {
                       <div
                         className={`relative overflow-hidden rounded-2xl border p-6 ${
                           prediction.label === "promoter"
-                            ? "border-emerald-500/30 bg-gradient-to-br from-emerald-500/15 via-slate-900 to-slate-950 text-emerald-100 shadow-xl shadow-emerald-950/20"
-                            : "border-amber-500/30 bg-gradient-to-br from-amber-500/15 via-slate-900 to-slate-950 text-amber-100 shadow-xl shadow-amber-950/20"
+                            ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-100 shadow-xl shadow-emerald-950/20"
+                            : "border-amber-500/30 bg-amber-500/15 text-amber-100 shadow-xl shadow-emerald-950/20"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -557,7 +562,7 @@ export function Dashboard() {
                           <div
                             style={{ width: `${Math.round(prediction.promoter_probability * 100)}%` }}
                             className={`h-full rounded-full transition-all duration-700 ${
-                              prediction.label === "promoter" ? "bg-gradient-to-r from-emerald-400 to-teal-300" : "bg-gradient-to-r from-amber-400 to-orange-400"
+                              prediction.label === "promoter" ? "bg-emerald-400" : "bg-amber-400"
                             }`}
                           />
                         </div>
@@ -574,7 +579,7 @@ export function Dashboard() {
                 </div>
 
                 <div className="mt-6 border-t border-slate-800/60 pt-4 text-center text-xs text-slate-500">
-                  Protected Research Workspace Session
+                  Open research workspace · sign in to associate runs with your account
                 </div>
               </section>
             </div>
@@ -601,7 +606,7 @@ export function Dashboard() {
                     <span className="w-20 text-slate-500 text-[10px]">5&apos;&rarr;3&apos; Strand:</span>
                     <span className="tracking-widest">{sequence || "TTGACATGCATCGATCGATCGATCGATC"}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-violet-300 font-bold">
+                  <div className="flex items-center gap-2 text-[#ff5e7d] font-bold">
                     <span className="w-20 text-slate-500 text-[10px]">3&apos;&rarr;5&apos; Strand:</span>
                     <span className="tracking-widest">{complementStrand || "AACTGTACGTAGCTAGCTAGCTAGCTAG"}</span>
                   </div>
@@ -630,11 +635,11 @@ export function Dashboard() {
                 </div>
                 <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur">
                   <p className="text-xs font-bold uppercase tracking-wider text-indigo-400">Promoter Ratio</p>
-                  <p className="mt-2 text-3xl font-black text-indigo-400">{historyStats.promoterRatio}%</p>
+                  <p className="mt-2 text-3xl font-black text-[#164a9f]">{historyStats.promoterRatio}%</p>
                 </div>
                 <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur">
-                  <p className="text-xs font-bold uppercase tracking-wider text-violet-400">Avg Confidence</p>
-                  <p className="mt-2 text-3xl font-black text-violet-400">{historyStats.avgConfidence}%</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#ff5e7d]">Avg Confidence</p>
+                  <p className="mt-2 text-3xl font-black text-[#ff5e7d]">{historyStats.avgConfidence}%</p>
                 </div>
               </div>
             )}

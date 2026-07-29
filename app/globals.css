@@ -1,86 +1,23 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: dark;
-}
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f4f0e6; color: #18202b; font-family: var(--font-inter), sans-serif; }
+button, textarea, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
 
-* {
-  box-sizing: border-box;
-}
+.atlas-page { background: #f4f0e6; background-image: radial-gradient(rgba(24,32,43,.11) .7px, transparent .7px); background-size: 7px 7px; }
+.atlas-topbar { min-height: 70px; display:flex; align-items:center; gap:24px; padding:12px clamp(20px,4vw,62px); border-bottom:2px solid #18202b; background:#f4f0e6; position:sticky; top:0; z-index:20; }
+.atlas-brand { display:flex; align-items:center; gap:9px; color:#164a9f; font-size:1.55rem; font-weight:900; letter-spacing:-.07em; text-decoration:none; }.atlas-brand svg{width:26px}.atlas-brand span span{color:#ff5e7d}
+.atlas-nav{margin-left:auto;display:flex;align-items:center;gap:clamp(12px,2vw,28px);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.atlas-nav a{color:#18202b;text-decoration:none}.atlas-nav a:hover{text-decoration:underline}.atlas-nav-action,.atlas-button{display:inline-flex;align-items:center;gap:10px;background:#ff5e7d;color:#18202b!important;border:2px solid #18202b;padding:10px 14px;box-shadow:3px 3px 0 #164a9f;text-decoration:none!important}.atlas-nav-action svg,.atlas-button svg{width:17px}
+.atlas-expedition{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1500px;margin:0 auto;border-bottom:2px solid #18202b}.atlas-index{border-right:2px solid #18202b;padding:42px 26px;display:flex;flex-direction:column;gap:8px}.atlas-index p{font:700 .68rem var(--font-jetbrains-mono);letter-spacing:.1em;margin:0;color:#164a9f}.atlas-index strong{font-size:1.15rem}.atlas-index ol{list-style:none;padding:26px 0;margin:20px 0;border-block:1px solid #18202b;display:grid;gap:16px;counter-reset:item}.atlas-index li{counter-increment:item}.atlas-index li a{font-size:.77rem;font-weight:800;text-transform:uppercase;text-decoration:none;color:#18202b}.atlas-index li a::before{content:"0" counter(item) " ";color:#164a9f}.atlas-index .is-active a{background:#ff5e7d;box-shadow:3px 0 #f7c548}.atlas-stamp{margin-top:auto;font-size:.76rem;font-weight:800;display:flex;gap:8px;align-items:center;color:#164a9f}.atlas-stamp svg{width:19px}
+.atlas-route{padding:clamp(34px,6vw,82px) clamp(24px,5vw,70px) 46px;overflow:hidden}.atlas-intro{max-width:610px}.atlas-kicker,.section-title span{font:800 .72rem var(--font-jetbrains-mono);letter-spacing:.14em;color:#ff5e7d}.atlas-intro h1,.section-title h2{font-family:Haettenschweiler,Impact,sans-serif;font-size:clamp(3.2rem,7vw,6.5rem);line-height:.88;letter-spacing:-.07em;text-transform:uppercase;margin:14px 0 18px}.atlas-intro p{max-width:55ch;line-height:1.6;font-size:1.05rem}
+.route-stations{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:54px 0 24px;min-width:800px}.route-station{min-height:188px;padding:18px;border:2px solid #18202b;background:#f8f5ec;position:relative}.route-station::after{content:"";position:absolute;inset:4px -4px -4px 4px;background:#164a9f;z-index:-1}.route-station span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#164a9f;color:#f4f0e6;font:800 .72rem var(--font-jetbrains-mono)}.route-station h2{font:800 .8rem var(--font-jetbrains-mono);text-transform:uppercase;margin:14px 0}.route-station code{display:block;padding:11px;background:#f7c548;font-size:.71rem;overflow:hidden}.route-arrow{font-size:2rem;font-weight:900;color:#164a9f}.motif-line{display:flex;flex-direction:column;gap:9px}.motif-line i{font:800 .77rem var(--font-jetbrains-mono);font-style:normal;padding:7px;background:#e5e0d4;text-decoration:line-through}.motif-line i.found{background:#ff5e7d;text-decoration:none}.motif-line i.yellow{background:#f7c548}.mini-map{height:92px;display:flex;align-items:flex-end;gap:6px;border-bottom:2px solid #18202b;position:relative;padding-bottom:8px}.mini-map b{display:block;width:14%;height:35%;background:#164a9f}.mini-map b:nth-child(2){height:65%;background:#f7c548}.mini-map b:nth-child(3){height:47%;background:#ff5e7d}.mini-map b.coral{height:86%}.mini-map em{position:absolute;right:0;bottom:-26px;font:700 .62rem var(--font-jetbrains-mono);font-style:normal}.outcome-ring{width:72px;height:72px;border:13px solid #164a9f;border-right-color:#ff5e7d;border-bottom-color:#f7c548;border-radius:50%;display:grid;place-items:center;margin:3px auto}.outcome-ring strong{font-size:1.8rem}.route-outcome p{font-size:.73rem;line-height:1.4}
+.atlas-launch{display:flex;align-items:center;gap:14px;max-width:660px;padding:14px 18px;background:#ff5e7d;border:2px solid #18202b;box-shadow:5px 5px 0 #f7c548}.atlas-launch>svg{width:23px}.atlas-launch p{margin:0;font-weight:800}.atlas-button{margin-left:auto;background:#f4f0e6!important;font-size:.82rem;font-weight:900;text-transform:uppercase}
+.atlas-workbench,.atlas-guide{max-width:1500px;margin:0 auto;padding:clamp(54px,8vw,108px) clamp(20px,5vw,70px);border-bottom:2px solid #18202b}.section-title{max-width:790px;margin-bottom:38px}.section-title h2{font-size:clamp(2.6rem,5vw,5rem);margin-bottom:0}.workbench-grid{display:grid;grid-template-columns:1.2fr .65fr 1fr;border:2px solid #18202b}.sequence-sheet,.composition-dial,.helix-panel{min-height:410px;padding:20px}.sequence-sheet,.composition-dial{border-right:2px solid #18202b;background:#f8f5ec}.sheet-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}.sheet-tabs button{border:1px solid #18202b;background:#f4f0e6;padding:6px 8px;font-size:.69rem;font-weight:800;cursor:pointer}.sheet-tabs button.selected{background:#164a9f;color:#f4f0e6;box-shadow:2px 2px 0 #ff5e7d}.sequence-sheet label{font:800 .72rem var(--font-jetbrains-mono);text-transform:uppercase}.sequence-sheet textarea{width:100%;height:176px;margin-top:10px;padding:15px;border:2px solid #18202b;background:#fffdf7;color:#18202b;font-family:var(--font-jetbrains-mono);font-size:.8rem;line-height:1.8;resize:vertical;outline:none}.sequence-sheet textarea:focus{box-shadow:4px 4px 0 #ff5e7d}.sequence-foot{display:flex;flex-wrap:wrap;gap:10px;padding:12px 0;font:700 .68rem var(--font-jetbrains-mono)}.sequence-foot span{padding:4px 6px;background:#f7c548}.inline-link{display:inline-flex;align-items:center;gap:7px;color:#164a9f;font-weight:900;font-size:.8rem}.inline-link svg{width:16px}.composition-dial{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.dial-ring{width:180px;aspect-ratio:1;border:22px solid #164a9f;border-top-color:#f7c548;border-right-color:#ff5e7d;border-radius:50%;display:grid;place-content:center;box-shadow:5px 5px 0 #18202b}.dial-ring strong{font-size:2rem}.dial-ring span{font:800 .68rem var(--font-jetbrains-mono);text-transform:uppercase}.composition-dial p{font-size:.82rem;line-height:1.5;max-width:27ch}.legend{display:flex;gap:15px;font-size:.7rem;font-weight:800}.legend i{display:inline-block;width:9px;height:9px;background:#164a9f;border-radius:50%;margin-right:4px}.legend i.coral-dot{background:#ff5e7d}.helix-panel{background:#164a9f;min-height:410px}.atlas-guide{background:#f7c548}.guide-track{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid #18202b}.guide-track article{padding:28px;min-height:220px;border-right:2px solid #18202b;background:#f4f0e6}.guide-track article:last-child{border:0}.guide-marker{display:inline-block;padding:6px 9px;background:#164a9f;color:#f4f0e6;font:800 .8rem var(--font-jetbrains-mono)}.guide-marker.yellow{background:#f7c548;color:#18202b;border:1px solid #18202b}.guide-marker.coral-marker{background:#ff5e7d}.guide-track h3{font-size:1.25rem;margin:26px 0 8px}.guide-track p{font-size:.9rem;line-height:1.6;max-width:30ch}.atlas-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:32px clamp(20px,5vw,70px);font-size:.83rem;font-weight:800}.atlas-footer a{display:flex;align-items:center;gap:8px;color:#164a9f}.atlas-footer svg{width:16px}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #090d16;
-  color: #f8fafc;
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-button, textarea, input {
-  font: inherit;
-}
-
-/* Background grid pattern matching Clerk dark theme */
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
-}
-
-/* Video Backdrop Blend Utilities */
-.video-backdrop {
-  mix-blend-mode: screen;
-  opacity: 0.18;
-  filter: hue-rotate(240deg) saturate(1.5);
-}
-
-/* Violet & Indigo Glow Effects */
-.glow-violet {
-  box-shadow: 0 0 50px -10px rgba(139, 92, 246, 0.35);
-}
-
-.glow-indigo {
-  box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.35);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.35);
-}
-
-/* Micro-animations */
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.02); }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-.transition-lift {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.transition-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.25);
-}
-
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #090d16;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
-}
+/* The authenticated workspace shares the printed atlas materials without changing its operational semantics. */
+.riso-app{background:#f4f0e6!important;color:#18202b!important}.riso-app .bg-grid-pattern{display:none}.riso-app [class*="bg-slate"],.riso-app [class*="bg-\[\#090d16\]"],.riso-app [class*="bg-\[radial"]{background:#f8f5ec!important}.riso-app [class*="border-slate"]{border-color:#18202b!important}.riso-app [class*="text-white"],.riso-app [class*="text-slate"]{color:#18202b!important}.riso-app [class*="text-indigo"]{color:#164a9f!important}.riso-app [class*="text-emerald"]{color:#0d6a50!important}.riso-app [class*="bg-gradient"]{background:#ff5e7d!important}.riso-app .sticky{background:#f4f0e6!important;border-bottom:2px solid #18202b!important}.riso-app textarea,.riso-app input{background:#fffdf7!important;color:#18202b!important;border-color:#18202b!important}.riso-app button,.riso-app a{outline-color:#164a9f}.riso-app button:focus-visible,.riso-app a:focus-visible,.atlas-page button:focus-visible,.atlas-page a:focus-visible{outline:3px solid #164a9f;outline-offset:3px}@media (prefers-reduced-motion:reduce){*,::before,::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media (max-width:900px){.atlas-expedition{grid-template-columns:1fr}.atlas-index{border-right:0;border-bottom:2px solid #18202b;padding:18px 24px;display:block}.atlas-index ol{display:flex;gap:16px;padding:14px 0;margin:12px 0}.atlas-stamp{display:none}.atlas-route{padding-inline:24px;overflow-x:auto}.workbench-grid{grid-template-columns:1fr 1fr}.helix-panel{grid-column:span 2}.guide-track{grid-template-columns:1fr}.guide-track article{border-right:0;border-bottom:2px solid #18202b}.guide-track article:last-child{border-bottom:0}}
+@media (max-width:640px){.atlas-topbar{padding:12px 18px}.atlas-topbar>p,.atlas-nav>a:not(.atlas-nav-action){display:none}.atlas-nav{gap:0}.atlas-nav-action{font-size:.68rem}.atlas-index ol{overflow:auto}.atlas-launch{align-items:flex-start;flex-wrap:wrap}.atlas-button{margin-left:35px}.workbench-grid{grid-template-columns:1fr}.sequence-sheet,.composition-dial{border-right:0;border-bottom:2px solid #18202b}.helix-panel{grid-column:auto}.atlas-footer{align-items:flex-start;flex-direction:column}}

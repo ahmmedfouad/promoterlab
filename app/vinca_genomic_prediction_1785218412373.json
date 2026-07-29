@@ -1,0 +1,10 @@
+{
+  "model": "xgboost",
+  "label": "non_promoter",
+  "confidence": 0.6613,
+  "promoter_probability": 0.3387,
+  "sequence": {
+    "length": 81,
+    "gc_content": 0.5802
+  }
+}
