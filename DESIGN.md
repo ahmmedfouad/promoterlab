@@ -2,11 +2,16 @@
 name: PromoterLab
 description: A tactile scientific atlas for promoter sequence exploration.
 colors:
-  paper: "#F4F0E6"
-  ink: "#18202B"
-  federal-blue: "#164A9F"
-  coral-ink: "#FF5E7D"
-  sunflower-ink: "#F7C548"
+  canvas: "#F3F7F2"
+  surface: "#FBFCF9"
+  text: "#183128"
+  muted-text: "#4D6255"
+  accent: "#246B4A"
+  accent-soft: "#DCEEE1"
+  signal: "#9E4435"
+  signal-soft: "#F6DFDA"
+  night-canvas: "#16221C"
+  night-surface: "#203127"
 typography:
   display:
     fontFamily: "Haettenschweiler, Impact, sans-serif"
@@ -33,13 +38,13 @@ spacing:
   section: "72px"
 components:
   button-primary:
-    backgroundColor: "{colors.coral-ink}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.accent}"
+    textColor: "#FFFFFF"
     rounded: "{rounded.control}"
     padding: "14px 20px"
   button-secondary:
-    backgroundColor: "{colors.federal-blue}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
     rounded: "{rounded.control}"
     padding: "14px 20px"
 ---
@@ -56,7 +61,7 @@ PromoterLab treats sequence prediction as a printed field expedition: overlappin
 
 ## Colors
 
-Paper is the field; blue carries structure, coral carries the primary action and active evidence, sunflower marks supporting motifs, and ink preserves legibility.
+Use a small semantic palette: canvas, surface, text, accent, and signal. Green is the only action color; rust is reserved for warnings and errors. Night mode uses low-glare forest surfaces with pale text, while muted text remains readable.
 
 **The Print-Layer Rule.** Color may overlap as an intentional Riso layer, but result states always include a textual label or icon.
 
@@ -102,6 +107,6 @@ Navigation is an atlas index: compact labels, active tab as an overprinted ink b
 
 ### Don't:
 
-- **Don't** use dark glassmorphism, neon gradients, or floating translucent cards.
+- **Don't** use neon gradients or floating translucent cards.
 - **Don't** fabricate performance statistics, pricing, customer proof, or biological scope.
 - **Don't** let texture obscure controls, sequences, results, or error recovery.

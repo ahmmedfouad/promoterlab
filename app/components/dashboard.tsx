@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Interactive3DDNA } from "./Interactive3DDNA";
+import { SiteHeader } from "./SiteHeader";
 
 type ModelName = "svm" | "xgboost";
 
@@ -89,7 +90,7 @@ function getComplementStrand(seq: string) {
     .join("");
 }
 
-export function Dashboard() {
+export function DashboardPage() {
   const { getToken } = useAuth();
   const { user } = useUser();
   const [activeTab, setActiveTab] = useState<"analyze" | "explainer" | "history">("analyze");
@@ -217,8 +218,11 @@ export function Dashboard() {
       <div className="pointer-events-none fixed inset-0 z-0 bg-grid-pattern opacity-30" />
       <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
 
-      {/* Header Bar */}
-      <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090d16]/85 backdrop-blur-xl">
+      <SiteHeader>
+        <span className="workspace-user hidden sm:block">{user?.firstName ? `Hi, ${user.firstName}` : user?.emailAddresses?.[0]?.emailAddress || "Workspace"}</span>
+        {user ? <UserButton /> : <Link href="/sign-in" className="site-signin">Sign in</Link>}
+      </SiteHeader>
+      {/* <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090d16]/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#164a9f] p-0.5 shadow-lg shadow-indigo-500/20">
@@ -242,7 +246,7 @@ export function Dashboard() {
             {user ? <UserButton /> : <Link href="/sign-in" className="rounded-md border border-slate-800 px-3 py-1.5 text-xs font-bold text-indigo-300">Sign in to sync</Link>}
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Main Container */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-8 lg:px-8">
@@ -250,9 +254,9 @@ export function Dashboard() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-[11px] font-bold text-indigo-300">
-              <FlaskConical className="h-3.5 w-3.5 text-indigo-400" /> GENOMIC PROMOTER INTELLIGENCE WORKSPACE
+              <FlaskConical className="h-3.5 w-3.5 text-indigo-400" /> DNA CHECKING WORKSPACE
             </div>
-            <h1 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">Sequence Classifier</h1>
+            <h1 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">Analyze DNA</h1>
           </div>
 
           <div className="flex overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur">
@@ -264,7 +268,7 @@ export function Dashboard() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Dna className="h-4 w-4" /> Sequence Classifier
+              <Dna className="h-4 w-4" /> Analyze
             </button>
             <button
               onClick={() => setActiveTab("explainer")}
@@ -274,7 +278,7 @@ export function Dashboard() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Sparkles className="h-4 w-4" /> 3D Gene Visualizer
+              <Sparkles className="h-4 w-4" /> View DNA
             </button>
             <button
               onClick={() => {
@@ -287,7 +291,7 @@ export function Dashboard() {
                   : "text-slate-400 hover:text-white"
               }`}
             >
-              <Activity className="h-4 w-4" /> Prediction History
+              <Activity className="h-4 w-4" /> Past results
               {history.length > 0 && (
                 <span className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${activeTab === "history" ? "bg-slate-950 text-indigo-300" : "bg-slate-800 text-slate-300"}`}>
                   {history.length}
@@ -589,7 +593,7 @@ export function Dashboard() {
         {/* TAB 2: Interactive 3D Gene Visualizer */}
         {activeTab === "explainer" && (
           <div className="mt-8 grid gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-7 h-[460px] sm:h-[500px]">
+            <div className="lg:col-span-7 min-h-[300px] sm:min-h-[440px]">
               <Interactive3DDNA activeSequence={sequence} />
             </div>
 
