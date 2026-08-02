@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 
 export function SiteHeader() {
@@ -8,11 +7,8 @@ export function SiteHeader() {
     <header className="minimal-header">
       <div className="minimal-header-inner">
         <BrandMark />
-        <nav aria-label="Main navigation" className="minimal-nav">
-         
-        
-        </nav>
-      
+        <p className="minimal-product-context">DNA promoter analysis</p>
+        <div className="minimal-header-status" aria-label="Active prediction model">XGBoost</div>
       </div>
     </header>
   );

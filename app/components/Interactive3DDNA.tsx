@@ -5,13 +5,6 @@ import * as THREE from "three";
 
 type DNAProps = { activeSequence?: string };
 
-const BASE_COLORS: Record<string, number> = {
-  A: 0x18794e,
-  T: 0xc2414b,
-  C: 0x2563b8,
-  G: 0x718096,
-};
-
 const COMPLEMENT: Record<string, string> = { A: "T", T: "A", C: "G", G: "C" };
 
 export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGATCGATATAAATGC" }: DNAProps) {
@@ -22,6 +15,14 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
+
+    const readColor = (token: string) => new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue(token).trim()).getHex();
+    const baseColors: Record<string, number> = {
+      A: readColor("--base-a"),
+      T: readColor("--base-t"),
+      C: readColor("--base-c"),
+      G: readColor("--base-g"),
+    };
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -35,7 +36,7 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
     }
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setClearColor(0xf9fcfe, 1);
+    renderer.setClearColor(readColor("--dna-canvas"), 1);
     renderer.domElement.setAttribute("aria-hidden", "true");
     container.appendChild(renderer.domElement);
 
@@ -43,8 +44,8 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
     camera.position.set(0, 0, 18);
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xb8d2e2, 2.3));
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+    scene.add(new THREE.HemisphereLight(readColor("--white"), readColor("--line-strong"), 2.3));
+    const keyLight = new THREE.DirectionalLight(readColor("--white"), 2.6);
     keyLight.position.set(8, 10, 12);
     scene.add(keyLight);
 
@@ -66,7 +67,7 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
       const oppositeZ = -z;
 
       [[base, x, z], [pairedBase, oppositeX, oppositeZ]].forEach(([letter, px, pz]) => {
-        const color = BASE_COLORS[letter as string] || BASE_COLORS.C;
+        const color = baseColors[letter as string] || baseColors.C;
         const material = new THREE.MeshStandardMaterial({ color, roughness: 0.42, metalness: 0.08 });
         const node = new THREE.Mesh(sphereGeometry, material);
         node.position.set(px as number, y, pz as number);
@@ -76,7 +77,7 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
         materials.push(material);
       });
 
-      const rungMaterial = new THREE.MeshStandardMaterial({ color: 0x9cb9cc, roughness: 0.65, metalness: 0.05 });
+      const rungMaterial = new THREE.MeshStandardMaterial({ color: readColor("--dna-rung"), roughness: 0.65, metalness: 0.05 });
       const rung = new THREE.Mesh(rungGeometry, rungMaterial);
       rung.position.set(0, y, 0);
       rung.scale.y = 5.2;
