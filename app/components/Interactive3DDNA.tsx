@@ -42,7 +42,7 @@ export function Interactive3DDNA({ activeSequence = "TTGACATGCATCGATCGATCGATCGAT
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 0, 18);
+    camera.position.set(0, 0, 25);
 
     scene.add(new THREE.HemisphereLight(readColor("--white"), readColor("--line-strong"), 2.3));
     const keyLight = new THREE.DirectionalLight(readColor("--white"), 2.6);
