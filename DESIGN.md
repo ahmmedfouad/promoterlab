@@ -1,112 +1,73 @@
----
-name: PromoterLab
-description: A tactile scientific atlas for promoter sequence exploration.
-colors:
-  canvas: "#F3F7F2"
-  surface: "#FBFCF9"
-  text: "#183128"
-  muted-text: "#4D6255"
-  accent: "#246B4A"
-  accent-soft: "#DCEEE1"
-  signal: "#9E4435"
-  signal-soft: "#F6DFDA"
-  night-canvas: "#16221C"
-  night-surface: "#203127"
-typography:
-  display:
-    fontFamily: "Haettenschweiler, Impact, sans-serif"
-    fontSize: "clamp(2.75rem, 7vw, 6rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.04em"
-  body:
-    fontFamily: "Inter, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.55
-  mono:
-    fontFamily: "JetBrains Mono, monospace"
-    fontSize: "0.8125rem"
-    fontWeight: 600
-    lineHeight: 1.5
-rounded:
-  control: "4px"
-  panel: "12px"
-spacing:
-  compact: "8px"
-  standard: "16px"
-  section: "72px"
-components:
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.control}"
-    padding: "14px 20px"
-  button-secondary:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.control}"
-    padding: "14px 20px"
----
-
 # Design System: PromoterLab
 
 ## Overview
 
-**Creative North Star: "The Riso Lab Atlas"**
+**Creative North Star: Clean Workbench**
 
-PromoterLab treats sequence prediction as a printed field expedition: overlapping spot inks trace the path from raw sequence to interpretable output. The public experience can be expressive and editorial; the workspace carries the same materials into a precise, readable operating environment.
+PromoterLab is a single-palette instrument — light warm paper, sharp data type, and one action color (orange). The design eliminates theme toggles, dark-mode overrides, and competing CSS systems. Every surface reads as one product.
 
-**Key Characteristics:** tactile paper field, layered scientific annotation, flat inked controls, asymmetrical atlas grids, clear genomic data.
+## Palette
 
-## Colors
-
-Use a small semantic palette: canvas, surface, text, accent, and signal. Green is the only action color; rust is reserved for warnings and errors. Night mode uses low-glare forest surfaces with pale text, while muted text remains readable.
-
-**The Print-Layer Rule.** Color may overlap as an intentional Riso layer, but result states always include a textual label or icon.
+| Token | Value | Role |
+|-------|-------|------|
+| `--c-bg` | `#F6F4EA` | Page ground (warm paper) |
+| `--c-surface` | `#F9F7F0` | Panel/card surface |
+| `--c-text` | `#14161A` | Primary text |
+| `--c-muted` | `#5A6068` | Secondary text, labels |
+| `--c-border` | `#D6D0C0` | Borders, dividers |
+| `--c-accent` | `#FF5A1F` | Primary action (Run, CTA) |
+| `--c-accent-hover` | `#E04E1A` | Hovered action |
+| `--c-accent-soft` | `rgba(255,90,31,0.06)` | Subtle action tint |
+| `--c-base-a` | `#3FA45B` | Adenine (green) |
+| `--c-base-t` | `#E5484D` | Thymine (red) |
+| `--c-base-c` | `#4C7FE0` | Cytosine (blue) |
+| `--c-base-g` | `#6B7280` | Guanine (gray) |
 
 ## Typography
 
-The display face is compressed and declarative; the body stays neutral and readable. The mono face is reserved for sequence data, coordinates, and model output.
-
-**The Evidence Rule.** Use monospace only where the visitor is reading biological data or measurement.
-
-## Layout
-
-Public pages use a route-like horizontal sequence journey with an atlas rail and varied editorial density. Workspace views use a wide, flat workbench with a clear input-to-result order. Below 768px, columns stack; sequence strings retain horizontal scroll rather than becoming illegible.
-
-## Elevation & Depth
-
-The system is flat by default. Separation comes from ink outlines, offset registration layers, and paper blocks; shadows appear only as small physical lifts during interaction.
-
-## Shapes
-
-Panels are softly squared, usually 12px. Labels and primary actions use clipped or tab-like rectangular forms. Pills are reserved for compact filters and statuses.
+- **Body:** Inter, 1rem / 1.6 line-height. Weight 400.
+- **Kicker / labels:** JetBrains Mono, 0.72rem, bold, uppercase, 0.06–0.12em tracking.
+- **Headings:** Inter, 700–800 weight, tight letter-spacing (−0.03em).
+- **Data / measurements:** JetBrains Mono, bold, 0.72–0.78rem.
+- **Display:** Inter 800 at clamp scale. No display-only faces.
 
 ## Components
 
 ### Buttons
+Flat, high-contrast: orange fill (#FF5A1F), white text, 6px radius, 10px 18px padding. Active state = slight scale-down (0.97). No shadow; no outline ring.
 
-Flat, high-contrast spot-ink controls with a 2px ink outline. Hover introduces a small offset misregistration; focus uses a visible outline.
+### Panels
+Light (#F9F7F0) surface, 1px border (#D6D0C0), 10px radius, 20px padding. No blur, no shadow. Header bar is a muted mono label on warm paper.
 
-### Inputs / Fields
+### Textarea
+White (#FFF) background, 1px warm-gray border, 8px radius. Focus: orange border + subtle orange glow (rgba 0.12).
 
-Paper-toned fields use an ink border, mono content where biological data is entered, and a coral focus treatment.
+### Preset Pills
+Rounded 20px pill, 1px border, white background, 0.7rem bold. Active: charcoal fill, white text.
 
-### Navigation
+### Motif Badges
+7rem bold mono, 4px 10px padding, 4px radius. Found: green fill, white text. Missing: dashed warm gray border.
 
-Navigation is an atlas index: compact labels, active tab as an overprinted ink block, and a practical stacked mobile version.
+### Tabs
+Bottom-border strip. Active tab gets orange underline (2px). Inactive: muted color, no underline.
+
+### Data Table
+1px borders on all cells, alternating hover tint (rgba orange 0.04). Mono header, 0.68rem uppercase.
+
+### DNA 3D Viewer
+Light warm panel. Header label as mono tag. Canvas fills remaining space.
+
+## Elevation
+Flat by default. Panels use border only — no shadow. Active controls get a subtle scale transform (scale 0.97) instead of elevation change.
+
+## Responsive
+Below 768px: two-column grids collapse to single column. Station journey stacks vertically. Nav links hide behind a hamburger (not implemented — use scroll) on small screens. Sequence strings scroll horizontally rather than wrapping in textarea.
 
 ## Do's and Don'ts
-
-### Do:
-
-- **Do** lead with the sequence-to-prediction path.
-- **Do** make learning illustrations and model outputs clearly distinguishable.
-- **Do** honor reduced-motion preferences by locking registration layers in place.
-
-### Don't:
-
-- **Don't** use neon gradients or floating translucent cards.
-- **Don't** fabricate performance statistics, pricing, customer proof, or biological scope.
-- **Don't** let texture obscure controls, sequences, results, or error recovery.
+- **Do** lead with the sequence-to-prediction path on every screen.
+- **Do** use the orange accent only for the primary action (Run) — never for decoration.
+- **Do** keep the data table readable at small widths (horizontal scroll).
+- **Don't** introduce theme toggles or dark-mode CSS custom properties.
+- **Don't** add backdrop-blur, shadow-2xl, or gradient decorations.
+- **Don't** use neon colors, floating translucent cards, or glass effects.
+- **Don't** use monospace as a costume — only for data, measurements, code, labels.

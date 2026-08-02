@@ -1,3 +1,30 @@
+# Running `api.py`
+
+1. Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+2. Set your API key (do NOT hardcode it):
+
+PowerShell:
+
+```powershell
+$env:OPENAI_API_KEY='sk-...'
+$env:OPENAI_BASE_URL='https://api.tokenrouter.com/v1' # optional
+python api.py
+```
+
+Unix/macOS:
+
+```bash
+export OPENAI_API_KEY='sk-...'
+export OPENAI_BASE_URL='https://api.tokenrouter.com/v1' # optional
+python api.py
+```
+
+The script will exit with an error if `OPENAI_API_KEY` is not set. The `OPENAI_BASE_URL` environment variable can be used to override the default `https://api.tokenrouter.com/v1`.
 # PromoterLab web app
 
 Clerk-protected Next.js dashboard for the Promoter Prediction API.
