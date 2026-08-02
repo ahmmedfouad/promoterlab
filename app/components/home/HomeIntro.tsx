@@ -79,7 +79,7 @@ export function HomeIntro({ stats, onStart }: HomeIntroProps) {
           <div className="minimal-station">
             <p className="minimal-station-num">03 / Run</p>
             <h3>Get a prediction</h3>
-            <p>Submit the sequence to the XGBoost classifier.</p>
+            <p>Submit the sequence to the classifier.</p>
           </div>
           <div className="station-arrow">→</div>
           <div className="minimal-station">
