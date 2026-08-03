@@ -16,7 +16,7 @@ import type { Prediction, Tab } from "./components/home/types";
 import { SiteHeader } from "./components/SiteHeader";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL;
+  process.env.NEXT_PUBLIC_API_BASE_URL!;
 
 export default function Home() {
   const [sequence, setSequence] = useState(SAMPLES[0].sequence);
